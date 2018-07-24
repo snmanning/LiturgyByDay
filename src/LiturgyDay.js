@@ -7,13 +7,25 @@ class LiturgyDay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: "",
+            liturgy: {},
         };
     }
     
 componentDidMount() {
-
-    }
+    const { date } = Moment();
+    const url = `http://calapi.inadiutorium.cz/api/v0/en/calendars/general-en/${date}`;
+    axios.get(url).then(response => {
+        this.setState({
+            liturgy: response.data,
+            success: true,
+        });
+    }).catch((error) => {
+        this.setState({
+            success: false,
+            error: error,
+        });
+    });
+}
 
 
 
@@ -21,9 +33,9 @@ componentDidMount() {
         return (
             <div className="LiturgyDay-container">
                 <h1>
-                    Time and week
+                    {liturgy.celebrations[title]}
                 </h1>
-                <p>Date</p>
+                <p>{liturgy.date}</p>
                 {/* stateless component for the label name. If the <p/>
                 below is null, then the label should not show */}
                 <label>Celebrations</label>
