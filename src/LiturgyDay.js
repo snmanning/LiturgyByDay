@@ -1,39 +1,55 @@
 import React, { Component } from 'react';
 import './LiturgyDay.css';
 import axios from 'axios';
-import Moment from 'react-moment';
+import moment from 'moment';
 
 class LiturgyDay extends Component {
     constructor(props) {
         super(props);
         this.state = {
             liturgy: {},
+            date: {},
+            isLoading: true,
         };
     }
     
 componentDidMount() {
-    const { date } = Moment();
-    const url = `http://calapi.inadiutorium.cz/api/v0/en/calendars/general-en/${date}`;
+    const  date = moment().format('YYYY/MM/DD');
+    const url = `/general-en/${date}`;
     axios.get(url).then(response => {
         this.setState({
             liturgy: response.data,
-            success: true,
+            isLoading: false,
         });
     }).catch((error) => {
         this.setState({
-            success: false,
+            isLoading: true,
             error: error,
         });
     });
 }
 
-
-
     render () {
+        const {isLoading, error, liturgy} = this.state;
+        if(error) {
+            return (
+                <p>
+                    Today's information is not available at this time. 
+                    Please check again later.
+                </p>
+            );
+        }
+        if(isLoading) {
+            return (
+                <h1>
+                    Retrieving today's Liturgical Calendar...
+                </h1>
+            );
+        }
         return (
             <div className="LiturgyDay-container">
                 <h1>
-                    {liturgy.celebrations[title]}
+                    {liturgy.celebrations[0]['title']}
                 </h1>
                 <p>{liturgy.date}</p>
                 {/* stateless component for the label name. If the <p/>

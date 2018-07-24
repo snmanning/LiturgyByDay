@@ -11,10 +11,9 @@
     "nodemon": "^1.18.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-moment": "^0.7.9",
     "react-scripts": "1.1.4"
   },
-  "proxy": "https://localhost:4083",
+  "proxy": "https://localhost:5001",
   "scripts": {
     "start": "node server.js",
     "client:start": "react-scripts start",
