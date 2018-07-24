@@ -7,9 +7,11 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "heroku": "^7.7.4",
+    "moment": "^2.22.2",
     "nodemon": "^1.18.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-moment": "^0.7.9",
     "react-scripts": "1.1.4"
   },
   "proxy": "https://localhost:4083",
@@ -21,5 +23,8 @@
     "eject": "react-scripts eject",
     "server:start": "nodemon server.js",
     "heroku-postbuild": "npm run build"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
   }
 }
