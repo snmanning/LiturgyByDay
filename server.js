@@ -9,8 +9,8 @@ server.use(cors());
 server.use(express.static('build'));
 
 server.get('/general-en/:year/:month/:day', (request, response) => {
-    const { date } = request.params;
-    const url = `http://calapi.inadiutorium.cz/api/v0/en/calendars/general-en/${date}`;
+    const { year, month, day } = request.params;
+    const url = `http://calapi.inadiutorium.cz/api/v0/en/calendars/general-en/${year}/${month}/${day}`;
     axios.get(url)
          .then(calendarResponse => {
             response.json(calendarResponse.data);
