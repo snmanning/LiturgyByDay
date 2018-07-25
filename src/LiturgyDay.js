@@ -47,6 +47,7 @@ componentDidMount() {
             return (
                 <h1>
                     Retrieving today's Liturgical Calendar...
+                    <i class="far fa-sun fa-spin"></i>
                 </h1>
             );
         }
@@ -62,7 +63,8 @@ componentDidMount() {
                         {liturgy.celebrations[0]['title']}
                     </h1>
                     <p className='LiturgyDay-date'>{date}</p>
-                    <Label title={liturgy.celebrations[1]['title']}/>
+                    <i class="fas fa-dove"></i>
+                    {this.props.title ? <Label title={liturgy.celebrations[1]['title']} /> : null}
                 </div>
             </div>
         );
