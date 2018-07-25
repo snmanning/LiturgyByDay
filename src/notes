@@ -1,0 +1,7 @@
+LiturgyDay
+    * have the main heading or the container box be the color of the season
+        - with parameters. If celebrations[1] true/ not null, then use that color instead of [0]
+    * or just have a <p/> with the season color 
+        - that could be ommitted if celebrations[1] is true/not null and that color listed instead 
+    * format the date to render the month and day
+        - props function to import to format date

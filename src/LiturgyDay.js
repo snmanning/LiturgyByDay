@@ -4,13 +4,15 @@ import Label from './Label';
 import axios from 'axios';
 import moment from 'moment';
 
+
+
 class LiturgyDay extends Component {
     constructor(props) {
         super(props);
         this.state = {
             liturgy: {},
             date: {},
-            season: {celebrations:[0]['colour']},
+            season: {},
             isLoading: true,
         };
     }
@@ -49,18 +51,17 @@ componentDidMount() {
             );
         }
         const style = {
-            backgroundcolor: {
-                season: this.state.season,
-            }
+            backgroundColor: liturgy.celebrations.map(c => c.colour).reverse()[0]
         };
-        const {season} = style
+        const date = moment(liturgy.date).format('MMMM-DD');
+        
         return (
             <div className="LiturgyDay-container">
-                <div style={season}>
-                    <h1>
+                <div className='LiturgyDay-today' style={style}>
+                    <h1 className='LiturgyDay-info'>
                         {liturgy.celebrations[0]['title']}
                     </h1>
-                    <p>{liturgy.date}</p>
+                    <p className='LiturgyDay-date'>{date}</p>
                     <Label title={liturgy.celebrations[1]['title']}/>
                 </div>
             </div>
